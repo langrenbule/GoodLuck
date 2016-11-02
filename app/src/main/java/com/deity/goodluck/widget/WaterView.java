@@ -1,13 +1,14 @@
 package com.deity.goodluck.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Interpolator;
 
 import com.deity.goodluck.R;
@@ -23,15 +24,19 @@ import java.util.List;
  */
 
 public class WaterView extends View {
-    private float initCircleRadius = 400.0f;
-    private float maxCircleRadius = 800.0f;
     private float duration = 2*1000;//2秒消失
     private long mCircleCreateSpeed = 500;//创建速度
-    private Interpolator mInterpolator = new AccelerateDecelerateInterpolator();//OvershootInterpolator();//AnticipateInterpolator();//AccelerateDecelerateInterpolator();//AccelerateInterpolator();//DecelerateInterpolator();//LinearInterpolator();
+    private Interpolator mInterpolator = new AccelerateInterpolator(1.2f);//OvershootInterpolator();//AnticipateInterpolator();//AccelerateDecelerateInterpolator();//AccelerateInterpolator();//DecelerateInterpolator();//LinearInterpolator();
     private Paint mWaterViewPaint;
     private boolean isWaterCircleRunning = true;
     private long mLastCreateTime;
     private List<Circle> mWaterCircleList = new ArrayList<>();
+    /**支持的自定义属性*/
+    private float initCircleRadius;//圆圈初始半径
+    private float maxCircleRadius ;//圆圈最大半径
+    private int circleFillColor;//圆圈填充的颜色
+    private int circleTextColor;//圆圈里面字体的颜色
+
     /**
      * Simple constructor to use when creating a view from code.
      *
@@ -45,8 +50,14 @@ public class WaterView extends View {
     public WaterView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mWaterViewPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mWaterViewPaint.setColor(getResources().getColor(R.color.redPacketColor));
         mWaterViewPaint.setStyle(Paint.Style.FILL);
+        TypedArray array =context.obtainStyledAttributes(attrs,R.styleable.WaterView);
+        initCircleRadius = array.getDimension(R.styleable.WaterView_circle_init_radius,100f);
+        maxCircleRadius = array.getDimension(R.styleable.WaterView_circle_max_radius,200f);
+        circleFillColor = array.getColor(R.styleable.WaterView_circle_fill_color,getResources().getColor(R.color.redPacketColor));
+        circleTextColor = array.getColor(R.styleable.WaterView_circle_text_color,getResources().getColor(R.color.colorPrimaryDark));
+        array.recycle();
+        mWaterViewPaint.setColor(circleFillColor);
     }
 
 
@@ -67,6 +78,7 @@ public class WaterView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        drawText(canvas,"你好这是测试字符串");
         Iterator<Circle> circleIterator = mWaterCircleList.iterator();
         while (circleIterator.hasNext()){
             Circle mLuckCircle = circleIterator.next();
@@ -81,6 +93,11 @@ public class WaterView extends View {
         if (mWaterCircleList.size() > 0) {
             postInvalidateDelayed(100);
         }
+    }
+
+    public void drawText(Canvas canvas,String str){
+        mWaterViewPaint.setColor(circleTextColor);
+        canvas.drawText(str,getWidth()/2,getHeight()/2,mWaterViewPaint);
     }
 
     private boolean isOverSpeedTimeSpace(){

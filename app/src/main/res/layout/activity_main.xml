@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,6 +9,9 @@
     <com.deity.goodluck.widget.WaterView
         android:id="@+id/luck_data"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:circle_init_radius="@dimen/circle_init_raduis"
+        app:circle_max_radius="@dimen/circle_max_raduis"
+        android:gravity="center"/>
 
 </RelativeLayout>

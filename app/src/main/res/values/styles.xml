@@ -1,4 +1,10 @@
 <resources>
+    <declare-styleable name="WaterView">
+        <attr name="circle_init_radius" format="dimension"/>
+        <attr name="circle_max_radius" format="dimension"/>
+        <attr name="circle_fill_color" format="color"/>
+        <attr name="circle_text_color" format="color"/>
+    </declare-styleable>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
