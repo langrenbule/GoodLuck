@@ -1,17 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <com.deity.goodluck.widget.WaterView
-        android:id="@+id/luck_data"
+    <com.zhy.android.percent.support.PercentFrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:circle_init_radius="@dimen/circle_init_raduis"
-        app:circle_max_radius="@dimen/circle_max_raduis"
-        android:gravity="center"/>
+        android:layout_height="0dp"
+        app:layout_heightPercent="30%h">
 
-</RelativeLayout>
+        <com.deity.goodluck.widget.WaterView
+            android:id="@+id/luck_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            app:circle_init_radius="@dimen/circle_init_raduis"
+            app:circle_max_radius="@dimen/circle_max_raduis"
+            app:circle_text_size="@dimen/text_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/luck_number"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end|bottom"
+            android:text="@string/count_time_tips" />
+    </com.zhy.android.percent.support.PercentFrameLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_heightPercent="70%h">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/content_items"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:divider="@color/colorGray"
+            android:dividerHeight="1dp"
+            android:fadingEdge="none">
+
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</com.zhy.android.percent.support.PercentLinearLayout>

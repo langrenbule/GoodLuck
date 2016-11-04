@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="redPacketColor">#E46C62</color>
+    <color name="colorGray">#243409</color>
+    <color name="nomalGray">#838B83</color>
 </resources>

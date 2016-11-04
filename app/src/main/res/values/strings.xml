@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">GoodLuck</string>
+    <string name="app_name">幸运号码</string>
+    <string name="count_time_tips">距离开奖:23:59:59</string>
+    <string name="luck_number">*****</string>
 </resources>
