@@ -11,6 +11,8 @@ public class LotteryTicketsNewsEntity {
     private String newsDescription;
     /**图片地址*/
     private String newsImageUrl;
+    /**文章地址*/
+    private String articleUrl;
     /**日期*/
     private String newsDate;
 
@@ -44,5 +46,13 @@ public class LotteryTicketsNewsEntity {
 
     public void setNewsDate(String newsDate) {
         this.newsDate = newsDate;
+    }
+
+    public String getArticleUrl() {
+        return articleUrl;
+    }
+
+    public void setArticleUrl(String articleUrl) {
+        this.articleUrl = articleUrl;
     }
 }

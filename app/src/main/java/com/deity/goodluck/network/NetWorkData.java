@@ -45,9 +45,15 @@ public class NetWorkData {
             //创建时间
             String createTime = element.select("p.list-top").select("span").attr("data-shared-at");
             entity.setNewsDate(createTime);
+
             //标题
             String title = element.select("h4.title").text();
             entity.setNewsTitle(title);
+            //文章地址
+            String articleUrl =  element.select("h4.title").select("a").attr("href");
+//            if (!TextUtils.isEmpty(articleUrl)){
+                entity.setArticleUrl(Params.baseUrl+articleUrl);
+//            }
             //图片
             Element imageUrl = element.select("a.wrap-img").first();
             if (null!=imageUrl){
@@ -66,13 +72,13 @@ public class NetWorkData {
         Elements elements = document.select("div.preview").first().children();
         if (null==elements) return null;
         for (Element element:elements){
-            LotteryTicketsNewsContentEntity entity = new LotteryTicketsNewsContentEntity();
-            String title = element.select("h1.title").text();
-            if (null!=title&&!title.equals("")){
-                entity.setTicketContent(title);
-                entity.setTicketType(LotteryTicketsNewsContentEntity.ContentType.CONTENT_TYPE_TITLE.getCode());
-                contents.getLotteryTicketsNewsContentList().add(entity);
-            }
+//            LotteryTicketsNewsContentEntity entity = new LotteryTicketsNewsContentEntity();
+//            String title = element.select("h1.title").text();
+//            if (null!=title&&!title.equals("")){
+//                entity.setTicketContent(title);
+//                entity.setTicketType(LotteryTicketsNewsContentEntity.ContentType.CONTENT_TYPE_TITLE.getCode());
+//                contents.getLotteryTicketsNewsContentList().add(entity);
+//            }
             LotteryTicketsNewsContentEntity mainContent = new LotteryTicketsNewsContentEntity();
             String showContent = element.select("div.show-content").html();
             if (null!=showContent&&!showContent.equals("")){
@@ -81,7 +87,7 @@ public class NetWorkData {
                 contents.getLotteryTicketsNewsContentList().add(mainContent);
             }
         }
-        System.out.println(contents.getLotteryTicketsNewsContentList().get(1).getTicketContent());
+//        System.out.println(contents.getLotteryTicketsNewsContentList().get(1).getTicketContent());
         return contents;
     }
 

@@ -1,6 +1,7 @@
 package com.deity.goodluck.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -29,7 +30,11 @@ public class NewTicketAdapter extends CommonBaseAdapter<LotteryTicketsNewsEntity
         holder.setText(R.id.news_title,data.getNewsTitle());
         holder.setText(R.id.news_content,data.getNewsTitle());
         holder.setText(R.id.news_date,data.getNewsDate());
-        Glide.with(context).load(data.getNewsImageUrl()).thumbnail(1.0f).into((ImageView) holder.getView(R.id.news_image));
+        if (TextUtils.isEmpty(data.getNewsImageUrl())){
+            Glide.with(context).load(R.mipmap.icon_laucher).thumbnail(1.0f).into((ImageView) holder.getView(R.id.news_image));
+        }else {
+            Glide.with(context).load(data.getNewsImageUrl()).thumbnail(1.0f).into((ImageView) holder.getView(R.id.news_image));
+        }
         holder.setIsRecyclable(true);;
     }
 

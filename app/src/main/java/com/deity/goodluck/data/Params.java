@@ -8,5 +8,7 @@ public class Params {
 
     public static final int SIZE_PER_PAGE=13;//每页的请求数量
 
+    public static final String baseUrl = "http://www.jianshu.com";
+
     public static final String targetUrl = "http://www.jianshu.com/users/c9d40feb9981/latest_articles?page=";
 }

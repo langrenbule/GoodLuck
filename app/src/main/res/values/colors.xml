@@ -6,4 +6,5 @@
     <color name="redPacketColor">#E46C62</color>
     <color name="colorGray">#243409</color>
     <color name="nomalGray">#838B83</color>
+    <color name="nomalGreen">#00FF00</color>
 </resources>

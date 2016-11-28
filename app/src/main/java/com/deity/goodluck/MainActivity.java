@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     public void initParams(){
         luckData.register();
+        mRefreshLayout.setOnRefreshListener(this);
         mAdapter = new NewTicketAdapter(this,null,true);
         //初始化EmptyView
         View emptyView = LayoutInflater.from(this).inflate(R.layout.empty_layout, (ViewGroup) mRecycleView.getParent(), false);
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         mAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(boolean isReload) {
+//                currentNewsPage++;
                 getNewItems(currentNewsPage);
             }
         });
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             @Override
             public void onItemClick(ViewHolder viewHolder, LotteryTicketsNewsEntity data, int position) {
                 Intent intent = new Intent(MainActivity.this, LotteryTicketsNewsActivity.class);
-                intent.putExtra("url", data.getNewsImageUrl());
+                intent.putExtra("url", data.getArticleUrl());
                 intent.putExtra("imageUrl", data.getNewsImageUrl());
                 intent.putExtra("newsTitle", data.getNewsTitle());
                 startActivity(intent);
@@ -116,7 +118,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
      */
     @Override
     public void onRefresh() {
-        mRefreshLayout.setRefreshing(false);
+        mRefreshLayout.setRefreshing(true);
+        getNewItems(currentNewsPage);
     }
 
 
@@ -170,8 +173,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     };
 
     public void updateUI(List<LotteryTicketsNewsEntity> mDatas){
+        mRefreshLayout.setRefreshing(false);
         if (null!=mDatas) {
-            mTotalDatas.addAll(mDatas);
             //刷新数据
             mAdapter.setLoadMoreData(mDatas);
         }else {
