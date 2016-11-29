@@ -23,17 +23,11 @@
             app:circle_text_size="@dimen/text_size" />
 
         <TextView
+            android:id="@+id/luck_code"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@string/luck_number"
             android:textSize="@dimen/text_size" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="end|bottom"
-            android:text="@string/count_time_tips" />
     </com.zhy.android.percent.support.PercentFrameLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
